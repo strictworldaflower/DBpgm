@@ -22,6 +22,8 @@ import java.sql.ResultSet;
 
 import java.sql.SQLException;
 
+import javafx.geometry.Insets;
+
 
 
 public class SearchPgm extends Application {
@@ -47,6 +49,7 @@ public class SearchPgm extends Application {
 
 
         GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10));
 
         grid.setHgap(10);
 

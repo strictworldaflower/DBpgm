@@ -3,6 +3,7 @@ package demo;
 
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.geometry.Insets;
 
 
 
@@ -50,10 +52,6 @@ public class InsertPgm extends Application {
             e.printStackTrace();
 
         }
-
-
-
-        // 나머지 JDBC 연결 및 SQL 작업을 수행하는 코드를 이어서 작성합니다.
 
     }
 
@@ -318,6 +316,7 @@ public class InsertPgm extends Application {
 
 
         VBox root = new VBox(10);
+        root.setPadding(new Insets(10));
 
         root.getChildren().addAll(
 
@@ -441,7 +440,6 @@ public class InsertPgm extends Application {
 
                 try {
 
-                    // Attempt to parse the approvalNumber as an integer
 
                     int approvalNumberInt = Integer.parseInt(approvalNumber);
 
@@ -455,7 +453,7 @@ public class InsertPgm extends Application {
 
                 } catch (NumberFormatException e) {
 
-                    returnMsg = "Invalid Approval Number"; // Handle non-integer input
+                    returnMsg = "Invalid Approval Number"; 
 
                 }
 

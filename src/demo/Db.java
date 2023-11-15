@@ -23,9 +23,9 @@ import javafx.geometry.Pos;
 import java.net.ServerSocket;
 import java.text.SimpleDateFormat;
 import java.io.File;
+import javafx.geometry.Insets;
 
 
-//나머지 코드
 
 
 
@@ -61,19 +61,33 @@ public class Db extends Application {
 
         TextField ipField = new TextField();
         ipField.setPromptText("IP 주소");
+        ipField.setMaxWidth(300); // 최대 길이 설정
+        ipField.setMinWidth(100); // 최소 길이 설정
         TextField portField = new TextField();
         portField.setPromptText("포트번호");
+        portField.setText("1433");
+        portField.setMaxWidth(300); // 최대 길이 설정
+        ipField.setMinWidth(100); // 최소 길이 설정
         TextField dbNameField = new TextField();
         dbNameField.setPromptText("데이터베이스 이름");
+        dbNameField.setText("pcms");
+        dbNameField.setMaxWidth(300); // 최대 길이 설정
+        dbNameField.setMinWidth(100); // 최소 길이 설정
         TextField usernameField = new TextField();
         usernameField.setPromptText("사용자");
+        usernameField.setText("sa");
+        usernameField.setMaxWidth(300); // 최대 길이 설정
+        usernameField.setMinWidth(100); // 최소 길이 설정
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("비밀번호");
+        passwordField.setMaxWidth(300); // 최대 길이 설정
+        passwordField.setMinWidth(100); // 최소 길이 설정
         Button connectButton = new Button("연결");
 
         VBox layout = new VBox(10);
+        layout.setPadding(new Insets(10));
         layout.getChildren().addAll(ipField, portField, dbNameField, usernameField, passwordField, connectButton);
-        Scene scene = new Scene(layout, 450, 230);
+        Scene scene = new Scene(layout, 350, 230);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -92,9 +106,9 @@ public class Db extends Application {
 
     private void connectToDatabase(String ip, String port, String dbName, String username, String password) {
         if (connected) {
-            return; // Already connected, no need to retry
+            return; 
         }
-        connected = true; // Connection attempt in progress
+        connected = true; 
 
         executor = Executors.newScheduledThreadPool(1);
         executor.schedule(() -> {
@@ -108,6 +122,7 @@ public class Db extends Application {
                 String url = "jdbc:sqlserver://" + ip + ":" + port + ";databaseName=" + dbName + ";encrypt=false";
                 connection = DriverManager.getConnection(url, username, password);
                 if (connection != null) {
+                	logger.info("데이터베이스에 접속되었습니다. IP: " + ip + ", 포트: " + port + ", 데이터베이스: " + dbName);
                     Platform.runLater(() -> showMainScreen());
                 } else {
                     showErrorMessage("데이터베이스 연결에 실패했습니다. 올바른 연결 정보를 확인하십시오.");

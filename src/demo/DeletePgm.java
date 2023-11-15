@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import javafx.geometry.Insets;
 
 public class DeletePgm {
 	private static final Logger logger = Logger.getLogger("demo.Db");
@@ -101,6 +102,7 @@ public class DeletePgm {
         });
 
         VBox layout = new VBox(10);
+        layout.setPadding(new Insets(10));
         layout.getChildren().addAll(equipmentComboBox, approvalNoField, dateField, deleteButton);
         Scene deleteScene = new Scene(layout, 400, 150);
         deleteStage.setScene(deleteScene);
